@@ -12,21 +12,24 @@ namespace ClientHandler.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IPokedexClient pokedexClient;
+        private readonly IPokedexClient1 pokedexClient;
+        private readonly IPokedexClient2 pokedexClient2;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IPokedexClient pokedexClient)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IPokedexClient1 pokedexClient, IPokedexClient2 pokedexClient2)
         {
             _logger = logger;
             this.pokedexClient = pokedexClient;
+            this.pokedexClient2 = pokedexClient2;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             var pokemon = this.pokedexClient.GetPokemonAsync("pikachu").Result;
+            var s = pokemon.ResponseHeader;
 
-            var s = pokemon.Name;
-
+            var pokemon2 = this.pokedexClient2.GetPokemonAsync("pikachu").Result;
+            var t = pokemon2.ResponseHeader;
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

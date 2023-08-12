@@ -16,7 +16,7 @@
 
                 if (!string.IsNullOrWhiteSpace(settings.ResponseHeader))
                 {
-                    response.Headers.Add("ResponseHeader", "SomeValue");
+                    response.Headers.Add("ResponseHeader", settings.ResponseHeader);
                 }
 
                 return response;

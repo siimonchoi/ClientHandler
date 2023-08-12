@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddPokedexClient();
+builder.Services.AddPokedexClient2();
 
 
 

@@ -29,14 +29,32 @@ namespace ClientHandler
 
             var outgoingRequestHandlerSettings = new OutgoingRequestHandlerSettings
             {
-                ResponseHeader = "pokemon-header"
+                ResponseHeader = "pokemon-header1111"
             };
 
-            services.AddHttpClient<IPokedexClient, PokedexClient>(client =>
-                {
-                    client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
-                })
-                    .AddClientHandlerSettings(outgoingRequestHandlerSettings);
+            services.AddHttpClient<IPokedexClient1, PokedexClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+            })
+                .AddClientHandlerSettings(outgoingRequestHandlerSettings);
+
+            return services;
+        }
+
+        public static IServiceCollection AddPokedexClient2(this IServiceCollection services)
+        {
+            services.RegisterGlobalHandlers();
+
+            var outgoingRequestHandlerSettings = new OutgoingRequestHandlerSettings
+            {
+                ResponseHeader = "pokemon-header2222"
+            };
+            
+            services.AddHttpClient<IPokedexClient2, PokedexClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+            })
+                .AddClientHandlerSettings(outgoingRequestHandlerSettings);
 
             return services;
         }

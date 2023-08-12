@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ClientHandler
 {
-    public class PokedexClient : IPokedexClient
+    public class PokedexClient : IPokedexClient1, IPokedexClient2
     {
         private readonly HttpClient httpClient;
 
