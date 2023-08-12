@@ -12,15 +12,22 @@ namespace ClientHandler.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IPokedexClient pokedexClient;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IPokedexClient pokedexClient)
         {
             _logger = logger;
+            this.pokedexClient = pokedexClient;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            var pokemon = this.pokedexClient.GetPokemonAsync("pikachu").Result;
+
+            var s = pokemon.Name;
+
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
